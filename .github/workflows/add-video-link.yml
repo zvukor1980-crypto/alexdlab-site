@@ -1,0 +1,36 @@
+name: Add video downloader links
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[skip-video-link]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch home page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          if '/video-downloader/' in s:
+              print('Video downloader link already present')
+              raise SystemExit(0)
+          s=s.replace('<div class="navlinks"><a href="#tools">Конвертеры</a>', '<div class="navlinks"><a href="/video-downloader/">Скачать видео</a><a href="#tools">Конвертеры</a>', 1)
+          s=s.replace('<div class="actions"><a class="btn" href="#smart">Перетащить файл</a><a class="btn secondary" href="#tools">Все инструменты</a></div>', '<div class="actions"><a class="btn" href="#smart">Перетащить файл</a><a class="btn secondary" href="/video-downloader/">Скачать видео по ссылке</a><a class="btn secondary" href="#tools">Все инструменты</a></div>', 1)
+          marker='<section class="cats">'
+          card='<article class="cat" data-q="video downloader url mp4 webm m3u8 media" onclick="location.href=\'/video-downloader/\'"><div class="catIcon">↓</div><h3>Видео по ссылке</h3><p>MP4, WebM, HLS .m3u8</p></article>'
+          s=s.replace(marker, marker+card, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Surface video downloader on home page [skip-video-link]"
+          git push
