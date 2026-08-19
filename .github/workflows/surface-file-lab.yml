@@ -1,0 +1,42 @@
+name: Surface File Lab
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[skip-file-lab]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch homepage and sitemap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          if '/file-lab/' not in s:
+              s=s.replace('<a href="/creative-studio/">Creative Studio</a>', '<a href="/file-lab/">File Lab Pro</a><a href="/creative-studio/">Creative Studio</a>',1)
+              s=s.replace('<a class="btn" href="/creative-studio/">Creative Studio</a>', '<a class="btn" href="/file-lab/">File Lab Pro</a><a class="btn secondary" href="/creative-studio/">Creative Studio</a>',1)
+              marker='<section class="featureRibbon">'
+              card='<a class="featureTile" href="/file-lab/"><span class="featureGlyph">⌁</span><b>File Lab Pro</b><span>Magic bytes, HEX, SHA-256, дубликаты, batch, PDF и pipelines.</span></a>'
+              s=s.replace(marker,marker+card,1)
+              q='<div class="quickLinksGrid">'
+              quick='<a class="quickLink" href="/file-lab/"><span class="quickLinkIcon">⌁</span><span><b>File Lab Pro</b><span>Инспектор и batch</span></span></a>'
+              s=s.replace(q,q+quick,1)
+              p.write_text(s,encoding='utf-8')
+          sp=Path('sitemap.xml')
+          x=sp.read_text(encoding='utf-8')
+          if 'file-lab' not in x:
+              x=x.replace('<url><loc>https://alexdlab.com/creative-studio/</loc>', '<url><loc>https://alexdlab.com/file-lab/</loc><changefreq>weekly</changefreq><priority>0.97</priority></url>\n  <url><loc>https://alexdlab.com/creative-studio/</loc>',1)
+              sp.write_text(x,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html sitemap.xml
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Surface File Lab Pro on homepage [skip-file-lab]"
+          git push
