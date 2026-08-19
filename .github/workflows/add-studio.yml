@@ -1,0 +1,42 @@
+name: Add Studio to homepage
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[studio-home-done]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch homepage and sitemap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html'); s=p.read_text(encoding='utf-8')
+          if '/studio/' not in s:
+            needle='<section class="quickLinks" id="quick-links">'
+            banner='<section style="margin:18px 0;border:1px solid rgba(111,233,255,.35);border-radius:22px;padding:24px;background:linear-gradient(120deg,rgba(111,233,255,.13),rgba(165,140,255,.12));display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap"><div><div class="eyebrow">NEW · ALEX D STUDIO</div><h2 style="margin:7px 0;font-size:clamp(24px,3vw,36px)">Видео, аудио и фото — теперь можно редактировать онлайн</h2><p style="margin:0;color:var(--muted);font-size:13px">Монтаж видео, Audio Lab, Photo Editor, GIF Studio, запись экрана и голоса.</p></div><a class="btn" href="/studio/">Открыть Alex D Studio →</a></section>'
+            s=s.replace(needle,banner+needle,1)
+            q='<div class="quickLinksGrid">'
+            card='<a class="quickLink" href="/studio/"><span class="quickLinkIcon">ST</span><span><b>Alex D Studio</b><span>Видео, аудио, фото и запись</span></span></a>'
+            s=s.replace(q,q+card,1)
+            s=s.replace('<a href="/media-studio/">Media Studio</a>','<a href="/studio/">Alex D Studio</a><a href="/media-studio/">Media Studio</a>',1)
+            p.write_text(s,encoding='utf-8')
+          sm=Path('sitemap.xml')
+          if sm.exists():
+            x=sm.read_text(encoding='utf-8')
+            if 'https://alexdlab.com/studio/' not in x:
+              entry='\n<url><loc>https://alexdlab.com/studio/</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>\n'
+              x=x.replace('</urlset>',entry+'</urlset>')
+              sm.write_text(x,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html sitemap.xml
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Feature Alex D Studio on homepage [studio-home-done]"
+          git push
