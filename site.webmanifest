@@ -1,0 +1,10 @@
+{
+  "name": "Alex D Lab",
+  "short_name": "Alex D Lab",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06101d",
+  "theme_color": "#07111f",
+  "description": "Free online tools and affordable digital services.",
+  "icons": []
+}
