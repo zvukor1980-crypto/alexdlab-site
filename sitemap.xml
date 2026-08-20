@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://alexdlab.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://alexdlab.com/service/</loc><changefreq>weekly</changefreq><priority>0.99</priority></url>
+  <url><loc>https://alexdlab.com/converter/</loc><changefreq>weekly</changefreq><priority>0.99</priority></url>
   <url><loc>https://alexdlab.com/developer-lab/</loc><changefreq>weekly</changefreq><priority>0.96</priority></url>
   <url><loc>https://alexdlab.com/media-studio/</loc><changefreq>weekly</changefreq><priority>0.96</priority></url>
   <url><loc>https://alexdlab.com/format-encyclopedia/</loc><changefreq>weekly</changefreq><priority>0.96</priority></url>

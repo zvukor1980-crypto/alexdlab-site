@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101418">
+  <title>RepairLab — инженерная диагностика электроники</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=10">
+  <style>
+    .mainnav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}.mainnav a{display:inline-flex;align-items:center;min-height:40px;padding:0 13px;border-radius:10px;border:1px solid #303943;color:#dce3e7;text-decoration:none;background:#12181d;font-weight:750}.mainnav a.primary{background:#d8ff3e;color:#101310;border-color:#d8ff3e}
+    .iphone-shell{margin:0 0 26px;border:1px solid #2a333b;border-radius:20px;overflow:hidden;background:#0b0e11;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+    .iphone-shell iframe{display:block;width:100%;height:min(1050px,82vh);border:0;background:#0b0e11}
+    .center-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;border-bottom:1px solid #2a333b;background:#12181d}.center-toolbar p{margin:0;color:#8f9aa4;font-size:13px}.center-toolbar a{white-space:nowrap}
+    .section-separator{display:flex;align-items:center;gap:14px;margin:34px 0 18px}.section-separator:before,.section-separator:after{content:"";height:1px;background:#273039;flex:1}.section-separator span{color:#8f9aa4;font-size:12px;font-weight:800;letter-spacing:.14em}
+    @media(max-width:560px){.center-toolbar{align-items:flex-start;flex-direction:column}.iphone-shell iframe{height:78vh}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">RL</div>
+      <div><strong>RepairLab</strong><span>инженерная диагностика электроники</span></div>
+    </div>
+    <button id="installBtn" class="ghost" hidden>Установить</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="hero-status"><span></span> REPAIRLAB DIRECT · M2 READY</div>
+        <p class="eyebrow">REPAIRLAB WORKBENCH</p>
+        <h1>Сервисный интеллект для каждого iPhone.</h1>
+        <p class="lead">Главная страница объединяет полный iPhone Repair Center и универсальную базу по другой электронике. Для iPhone сначала выбирается модель, затем задача: ремонт, сохранение данных, Recovery/DFU, прошивка, jailbreak или board-level диагностика.</p>
+        <div class="hero-metrics"><div><strong>52</strong><span>модели iPhone</span></div><div><strong>9</strong><span>проверок Trust Scan</span></div><div><strong>0</strong><span>данных уходит наружу</span></div></div>
+      </div>
+      <div class="scope">
+        <b>iPhone Repair Center</b>
+        <span>Все поколения · данные · Recovery/DFU · IPSW · jailbreak · темы · диагностика платы · микропайка</span>
+      </div>
+      <div class="hero-hud" aria-hidden="true">
+        <div class="hud-orbit"><i></i><i></i><i></i><strong id="hudPercent">98%</strong><span>CORE READY</span></div>
+        <div class="hud-code">SYS.09 / M2<br>USB LINK STANDBY</div>
+      </div>
+    </section>
+
+    <nav class="mainnav">
+      <a href="/">← Все отделы</a>
+      <a class="primary" href="#checkup">Проверка iPhone</a>
+      <a href="#bridge">Подключить iPhone</a>
+      <a href="#iphone-center">Repair Center</a>
+      <a href="#all-electronics">Другая электроника</a>
+      <a href="#measurements">Измерения</a>
+    </nav>
+
+    <section class="telemetry" aria-label="Состояние систем RepairLab">
+      <div class="telemetry-title"><span class="telemetry-pulse"></span><div><b>LIVE SYSTEM TELEMETRY</b><small>локальная диагностическая среда</small></div></div>
+      <div class="telemetry-cell"><div><span>TRUST ENGINE</span><strong data-counter="98">0%</strong></div><i style="--level:98%"></i></div>
+      <div class="telemetry-cell"><div><span>MODEL DATABASE</span><strong data-counter="100">0%</strong></div><i style="--level:100%"></i></div>
+      <div class="telemetry-cell"><div><span>DATA PRIVACY</span><strong data-counter="100">0%</strong></div><i style="--level:100%"></i></div>
+      <div class="telemetry-cell"><div><span>USB CONTROL</span><strong id="usbTelemetry">WAIT</strong></div><i class="telemetry-wait" style="--level:42%"></i></div>
+    </section>
+
+    <section id="checkup" class="checkup panel">
+      <div class="checkup-intro">
+        <div><p class="eyebrow">REPAIRLAB TRUST SCAN</p><h2>Проверка iPhone перед покупкой</h2></div>
+        <span class="badge verified">работает без передачи данных</span>
+      </div>
+      <p class="checkup-lead">Пошаговый офлайн-аудит оригинальности деталей, блокировок и функций. Это честная проверка по фактам с устройства — серийный номер и IMEI никуда не отправляются.</p>
+      <div class="checkup-grid">
+        <div class="audit-form">
+          <label>Модель<input id="auditModel" placeholder="Например, iPhone 15 Pro"></label>
+          <label>Состояние аккумулятора, %<input id="auditBattery" type="number" min="1" max="100" inputmode="numeric" placeholder="87"></label>
+          <label>IMEI / серийный номер (необязательно)<input id="auditSerial" autocomplete="off" placeholder="только для отчёта"></label>
+          <div id="auditChecks" class="audit-checks"></div>
+          <div class="audit-actions"><button id="auditRun" class="primary">Рассчитать индекс доверия</button><button id="auditReset" class="ghost">Сбросить</button></div>
+        </div>
+        <aside id="auditResult" class="trust-card" aria-live="polite">
+          <div class="trust-ring" style="--score:0"><strong>—</strong><span>/ 100</span></div>
+          <div><p class="eyebrow">TRUST INDEX</p><h3>Пройдите чек-лист</h3><p>RepairLab соберёт риски и подскажет, что перепроверить до оплаты.</p></div>
+        </aside>
+      </div>
+      <div class="audit-facts"><span>Оригинальность: Настройки → Основные → Об этом устройстве → История деталей</span><span>Activation Lock проверяется выходом продавца из Apple Account и стиранием при вас</span><span>IMEI на корпусе, в системе и по *#06# должен совпадать</span></div>
+    </section>
+
+    <section id="bridge" class="bridge panel">
+      <div class="bridge-head"><div><p class="eyebrow">REPAIRLAB DIRECT · MAC M2</p><h2>Управление подключённым iPhone</h2></div><span id="bridgeBadge" class="badge neutral">Bridge не подключён</span></div>
+      <div class="bridge-layout">
+        <div class="device-orb"><span id="devicePulse"></span><strong id="deviceMode">Нет соединения</strong><small id="deviceName">Запустите RepairLab Bridge на Mac</small></div>
+        <div class="bridge-controls">
+          <p id="bridgeHint">Локальный помощник определит iPhone и безопасно передаст команды Apple Configurator. Данные устройства не покидают Mac.</p>
+          <div class="bridge-actions">
+            <a class="ghost bridge-download" href="RepairLab-Bridge-Mac-M2.zip">Скачать помощник для Mac</a>
+            <button id="bridgeIdentify" class="primary">Определить iPhone</button>
+            <button id="bridgeRefresh" class="ghost">Обновить статус</button>
+            <button id="dfuGuide" class="ghost">DFU-помощник</button>
+            <button id="openConfigurator" class="ghost">Apple Configurator</button>
+            <button id="deviceUpdate" class="primary">Update · сохранить данные</button>
+            <button id="deviceRestore" class="danger-button">Restore · стереть</button>
+          </div>
+          <div id="deviceDetails" class="device-details" hidden></div>
+          <button id="openDetectedGuide" class="ghost detected-guide" hidden>Открыть инструкции для найденной модели ↓</button>
+          <div id="bridgeProgress" class="bridge-progress" hidden><span></span><p>Операция выполняется…</p></div>
+        </div>
+      </div>
+      <div id="dfuPanel" class="dfu-panel" hidden>
+        <div><p class="eyebrow">LIVE DFU GUIDE</p><h3 id="dfuTitle">Подготовьте подключённый iPhone</h3></div>
+        <div class="dfu-timer"><strong id="dfuSeconds">—</strong><span id="dfuInstruction">Выберите поколение</span></div>
+        <select id="dfuFamily"><option value="modern">iPhone 8 и новее</option><option value="seven">iPhone 7 / 7 Plus</option><option value="home">iPhone 6s / SE 1 и старше</option></select>
+        <button id="dfuStart" class="primary">Начать последовательность</button>
+        <button id="dfuClose" class="ghost">Закрыть</button>
+      </div>
+    </section>
+
+    <section id="iphone-center" class="iphone-shell" aria-label="iPhone Repair Center">
+      <div class="center-toolbar"><p><b>Без подключения:</b> выберите любую из 52 моделей и неисправность — получите маршрут ремонта</p><a class="ghost" href="iphone.html" target="_blank">Открыть центр на весь экран ↗</a></div>
+      <iframe id="iphoneFrame" src="iphone.html?v=10" title="RepairLab iPhone Repair Center" loading="eager"></iframe>
+    </section>
+
+    <div class="section-separator" id="all-electronics"><span>ДРУГАЯ ЭЛЕКТРОНИКА</span></div>
+
+    <section class="panel selector">
+      <div class="field"><label>Категория</label><select id="category"></select></div>
+      <div class="field"><label>Производитель</label><select id="brand"></select></div>
+      <div class="field"><label>Модель</label><select id="model"></select></div>
+      <div class="field"><label>Неисправность</label><select id="fault"></select></div>
+      <button id="startBtn" class="primary">Начать диагностику</button>
+    </section>
+
+    <section class="grid">
+      <article class="panel diagnostic">
+        <div class="section-head"><div><p class="eyebrow">DIAGNOSTIC FLOW</p><h2 id="diagTitle">Выберите модель и неисправность</h2></div><span id="sourceBadge" class="badge neutral">нет данных</span></div>
+        <div id="flow" class="flow empty"><div class="empty-state">Здесь появятся последовательные шаги проверки.</div></div>
+      </article>
+      <aside class="stack">
+        <section class="panel"><p class="eyebrow">INSTRUMENTS</p><h3>Инструменты</h3><div id="tools" class="chips"></div></section>
+        <section class="panel"><p class="eyebrow">DOCUMENTS</p><h3>Мануалы и схемы</h3><div id="docs" class="docs muted">Выберите устройство.</div></section>
+        <section class="panel"><p class="eyebrow">BENCH NOTES</p><h3>Заметки мастера</h3><textarea id="notes" placeholder="Ток потребления, напряжения, температура, наблюдения..."></textarea><button id="saveNotes" class="ghost full">Сохранить локально</button></section>
+      </aside>
+    </section>
+
+    <section id="measurements" class="panel measurements">
+      <div class="section-head"><div><p class="eyebrow">MEASUREMENT ASSISTANT</p><h2>Проверка результата измерения</h2></div></div>
+      <div class="measure-row">
+        <select id="measureType"><option value="voltage">Напряжение, V</option><option value="resistance">Сопротивление, Ω</option><option value="current">Ток, A</option><option value="frequency">Частота, Hz</option></select>
+        <input id="measureValue" inputmode="decimal" placeholder="Введите значение">
+        <button id="analyzeBtn" class="primary">Оценить</button>
+      </div>
+      <div id="measureResult" class="result muted">Для точной оценки выберите конкретный шаг, у которого задан проверенный диапазон.</div>
+    </section>
+
+    <section class="warning"><strong>Безопасность и точность.</strong><span>RepairLab не выдумывает контрольные точки, напряжения или профили нагрева. Точные значения должны быть привязаны к проверенному источнику и конкретной ревизии платы. Восстановление данных и jailbreak не включают обход код-пароля, Activation Lock или доступ к чужим данным.</span></section>
+  </main>
+
+  <footer>RepairLab · iPhone + универсальная электроника · GitHub Pages</footer>
+  <script src="app.js?v=10"></script>
+  <script src="jailbreak.js?v=10"></script>
+  <script>
+    const frame=document.getElementById('iphoneFrame');
+    frame.addEventListener('load',()=>{
+      try{
+        const d=frame.contentDocument;
+        const innerHeader=d.querySelector('header.topbar');
+        if(innerHeader) innerHeader.style.display='none';
+        const wrap=d.querySelector('main.wrap');
+        if(wrap) wrap.style.paddingTop='18px';
+        d.documentElement.style.scrollbarColor='#d8ff3e #101418';
+      }catch(e){console.warn('iPhone Center resize fallback',e);}
+    });
+  </script>
+</body>
+</html>
