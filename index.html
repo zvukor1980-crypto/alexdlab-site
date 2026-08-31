@@ -1,9 +1,127 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Alex D Lab — единый портал сервисного и конвертерного интеллекта."><meta name="theme-color" content="#05080c"><link rel="canonical" href="https://alexdlab.com/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><title>Alex D Lab — выберите интеллект</title><style>
-:root{--bg:#05070a;--text:#f5f8fa;--muted:#8e9aa5;--line:rgba(255,255,255,.12);--lime:#d9ff3f;--cyan:#54e5ff;--violet:#9b6dff;--mx:50%;--my:50%}*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at var(--mx) var(--my),rgba(84,229,255,.08),transparent 28rem),#05070a}a{color:inherit;text-decoration:none}.noise,.grid,.aurora{position:fixed;inset:0;pointer-events:none}.noise{z-index:9;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}.grid{z-index:-1;opacity:.22;background-image:linear-gradient(rgba(84,229,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(84,229,255,.08) 1px,transparent 1px);background-size:64px 64px;transform:perspective(600px) rotateX(64deg) scale(1.5) translateY(31%);transform-origin:center bottom;animation:gridFlow 16s linear infinite}@keyframes gridFlow{to{background-position:0 64px}}.aurora{z-index:-2;filter:blur(100px);opacity:.15}.aurora:before,.aurora:after{content:"";position:absolute;width:44vw;height:44vw;border-radius:50%;animation:float 14s ease-in-out infinite alternate}.aurora:before{left:-13vw;top:20vh;background:var(--lime)}.aurora:after{right:-13vw;top:10vh;background:var(--violet);animation-delay:-7s}@keyframes float{to{transform:translate3d(7vw,-9vh,0) scale(1.15)}}
-.shell{width:min(1440px,calc(100% - 44px));margin:auto}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5}.brand{display:flex;align-items:center;gap:12px;font-weight:950;letter-spacing:.04em}.logo{position:relative;width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--lime),var(--cyan));color:#071009;box-shadow:0 0 35px rgba(217,255,63,.28);font-size:12px}.logo:after{content:"";position:absolute;inset:-5px;border:1px solid rgba(84,229,255,.25);border-radius:17px;animation:logoSpin 7s linear infinite}@keyframes logoSpin{to{transform:rotate(360deg)}}.brand small{display:block;margin-top:2px;color:#687680;font-size:8px;letter-spacing:.18em}.system{display:flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(8,13,17,.72);font:700 8px ui-monospace,SFMono-Regular,monospace;letter-spacing:.13em;color:#9eadb6}.system i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 rgba(217,255,63,.6);animation:pulse 1.7s infinite}@keyframes pulse{70%{box-shadow:0 0 0 9px transparent}}
-.hero{position:relative;min-height:calc(100vh - 100px);padding:38px 0 30px;display:flex;flex-direction:column;justify-content:center}.backdrop{position:absolute;inset:0;border:1px solid rgba(255,255,255,.09);border-radius:34px;background:linear-gradient(90deg,rgba(4,7,9,.15),rgba(4,7,9,.78) 43%,rgba(4,7,9,.78) 57%,rgba(4,7,9,.15)),url('/assets/alexdlab-portal-v1.webp') center/cover no-repeat;box-shadow:0 50px 140px rgba(0,0,0,.55);overflow:hidden}.backdrop:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.1) 49%,transparent 60%);transform:translateX(-110%);animation:scan 7s ease-in-out infinite}@keyframes scan{0%,52%{transform:translateX(-110%)}88%,100%{transform:translateX(110%)}}.backdrop:after{content:"";position:absolute;left:50%;top:12%;bottom:12%;width:1px;background:linear-gradient(transparent,var(--cyan),var(--violet),transparent);box-shadow:0 0 28px rgba(84,229,255,.4);animation:corePulse 2.6s ease-in-out infinite}@keyframes corePulse{50%{opacity:.28;transform:scaleY(.82)}}
-.intro{position:relative;z-index:2;text-align:center;max-width:790px;margin:0 auto 34px}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid rgba(84,229,255,.25);border-radius:999px;background:rgba(5,11,15,.66);backdrop-filter:blur(12px);color:#a9dbe3;font-size:9px;font-weight:900;letter-spacing:.18em}.eyebrow:before{content:"";width:22px;height:1px;background:var(--cyan);box-shadow:0 0 9px var(--cyan)}h1{margin:17px 0 12px;font-size:clamp(42px,6vw,82px);line-height:.9;letter-spacing:-.06em;text-shadow:0 5px 40px #000}h1 span{background:linear-gradient(90deg,var(--lime),#fff 42%,var(--cyan),var(--violet));background-size:180% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:titleFlow 5s linear infinite}@keyframes titleFlow{to{background-position:180% center}}.intro p{max-width:650px;margin:auto;color:#a2adb5;font-size:clamp(13px,1.4vw,17px);line-height:1.6}
-.departments{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1120px;width:100%;margin:0 auto}.department{--accent:var(--lime);position:relative;min-height:330px;padding:28px;border:1px solid rgba(255,255,255,.13);border-radius:24px;overflow:hidden;background:linear-gradient(145deg,rgba(7,12,15,.88),rgba(8,12,16,.66));backdrop-filter:blur(22px);transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}.department.converter{--accent:var(--violet)}.department:hover{transform:translateY(-8px) scale(1.012);border-color:color-mix(in srgb,var(--accent) 55%,transparent);box-shadow:0 35px 90px color-mix(in srgb,var(--accent) 13%,transparent)}.department:before{content:"";position:absolute;width:270px;height:270px;right:-100px;top:-100px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 20%,transparent),transparent 68%)}.department:after{content:"";position:absolute;inset:auto 0 0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:translateX(-100%);animation:cardScan 3.5s linear infinite}@keyframes cardScan{to{transform:translateX(100%)}}.dept-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.dept-index{font:800 10px ui-monospace,SFMono-Regular,monospace;color:var(--accent);letter-spacing:.16em}.orbit{position:relative;width:82px;height:82px;flex:0 0 82px;display:grid;place-items:center}.orbit:before,.orbit:after,.orbit i{content:"";position:absolute;border-radius:50%;inset:0;border:1px solid color-mix(in srgb,var(--accent) 46%,transparent);border-right-color:transparent;animation:spin 4s linear infinite}.orbit:after{inset:10px;border-style:dashed;animation-direction:reverse;animation-duration:6s}.orbit i{inset:24px;border:0;background:var(--accent);box-shadow:0 0 26px var(--accent);animation:breathe 2s ease-in-out infinite}.orbit b{font:900 8px ui-monospace,SFMono-Regular,monospace;z-index:1;color:#061008}@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{50%{transform:scale(.62);opacity:.55}}.department h2{margin:25px 0 10px;font-size:clamp(27px,3vw,41px);line-height:1;letter-spacing:-.045em}.department p{max-width:480px;color:#9ca8b0;line-height:1.55;font-size:13px}.features{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0}.features span{padding:6px 8px;border:1px solid rgba(255,255,255,.1);border-radius:7px;background:rgba(255,255,255,.035);font-size:8px;color:#aab5bc;letter-spacing:.06em}.enter{display:inline-flex;align-items:center;gap:10px;margin-top:5px;padding:12px 15px;border-radius:11px;background:var(--accent);color:#08100b;font-weight:900;font-size:12px;transition:gap .2s,box-shadow .2s}.department:hover .enter{gap:17px;box-shadow:0 0 28px color-mix(in srgb,var(--accent) 28%,transparent)}
-.telemetry{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);max-width:900px;width:100%;margin:20px auto 0;border:1px solid rgba(255,255,255,.09);border-radius:13px;overflow:hidden;background:rgba(4,8,11,.7);backdrop-filter:blur(15px)}.telemetry div{padding:10px 13px;border-right:1px solid rgba(255,255,255,.07)}.telemetry div:last-child{border:0}.telemetry span{display:block;color:#5f707a;font-size:7px;letter-spacing:.13em}.telemetry b{display:block;margin-top:4px;font:800 10px ui-monospace,SFMono-Regular,monospace;color:#bdc9cf}.telemetry b.online{color:var(--lime)}
-@media(max-width:780px){.shell{width:min(100% - 24px,1440px)}.topbar{height:66px}.system{display:none}.hero{padding-top:22px;justify-content:flex-start}.backdrop{inset:0;border-radius:25px;background:linear-gradient(180deg,rgba(4,7,9,.3),rgba(4,7,9,.85) 32%,rgba(4,7,9,.96)),url('/assets/alexdlab-portal-v1.webp') center/cover}.intro{padding:36px 12px 0;margin-bottom:25px}h1{font-size:43px}.departments{grid-template-columns:1fr}.department{min-height:285px;padding:22px}.orbit{width:65px;height:65px;flex-basis:65px}.telemetry{grid-template-columns:1fr 1fr;margin-bottom:20px}.telemetry div:nth-child(2){border-right:0}.telemetry div:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.07)}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-</style></head><body><div class="noise"></div><div class="grid"></div><div class="aurora"></div><header class="shell topbar"><a class="brand" href="/"><span class="logo">ADL</span><span>ALEX D LAB<small>DUAL INTELLIGENCE SYSTEM</small></span></a><div class="system"><i></i> ALL SYSTEMS OPERATIONAL</div></header><main class="shell hero"><div class="backdrop"></div><section class="intro"><div class="eyebrow">ALEX D LAB · INTELLIGENCE PORTAL</div><h1>Выберите свой <span>интеллект</span></h1><p>Один домен. Две мощные лаборатории. Диагностируйте технику или преобразуйте цифровые файлы — всё внутри Alex D Lab.</p></section><section class="departments"><a class="department service" href="/service/"><div class="dept-top"><span class="dept-index">01 / HARDWARE INTELLIGENCE</span><div class="orbit"><i></i><b>98%</b></div></div><h2>Сервисный интеллект</h2><p>iPhone Trust Scan, автоматическое определение устройства, Recovery/DFU, прошивки и инженерные маршруты ремонта.</p><div class="features"><span>52 МОДЕЛИ</span><span>TRUST SCAN</span><span>MAC M2 DIRECT</span><span>REPAIR ROUTES</span></div><span class="enter">Войти в сервисную лабораторию <b>→</b></span></a><a class="department converter" href="/converter/"><div class="dept-top"><span class="dept-index">02 / DIGITAL INTELLIGENCE</span><div class="orbit"><i></i><b>100%</b></div></div><h2>Конвертерный интеллект</h2><p>80+ операций для аудио, видео, изображений, PDF, таблиц, ZIP, данных, дизайна и инженерных вычислений.</p><div class="features"><span>80+ ОПЕРАЦИЙ</span><span>LOCAL PROCESSING</span><span>FILE DOCTOR</span><span>MEDIA STUDIO</span></div><span class="enter">Войти в цифровую лабораторию <b>→</b></span></a></section><section class="telemetry" aria-label="Состояние систем"><div><span>PORTAL CORE</span><b class="online" data-count="100">0%</b></div><div><span>PRIVACY</span><b data-count="100">0%</b></div><div><span>MODULES</span><b data-count="132">0</b></div><div><span>DOMAIN</span><b>ALEXDLAB.COM</b></div></section></main><script>const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!reduced){addEventListener('pointermove',e=>{document.documentElement.style.setProperty('--mx',`${e.clientX/innerWidth*100}%`);document.documentElement.style.setProperty('--my',`${e.clientY/innerHeight*100}%`)})}document.querySelectorAll('[data-count]').forEach(el=>{const n=+el.dataset.count;if(reduced){el.textContent=n+(n<=100?'%':'');return}const start=performance.now();function tick(t){const p=Math.min(1,(t-start)/1400),v=Math.round(n*(1-Math.pow(1-p,3)));el.textContent=v+(n<=100?'%':'');if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)});</script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Alex D Lab — интеллектуальная диагностика смартфонов и безопасные пошаговые инструкции.">
+  <meta name="theme-color" content="#080b0f">
+  <link rel="canonical" href="https://alexdlab.com/">
+  <title>Alex D Lab — диагностика смартфона</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <header class="topbar wrap">
+    <a class="brand" href="/" aria-label="Alex D Lab — на главную">
+      <span class="brand-mark"><i></i><b>AD</b></span>
+      <span>Alex D Lab<small>DEVICE INTELLIGENCE</small></span>
+    </a>
+    <nav aria-label="Основная навигация">
+      <a href="#diagnostic">Диагностика</a>
+      <a href="/service/">Лаборатория</a>
+      <a href="/converter/">Конвертеры</a>
+    </nav>
+    <a class="status" href="#diagnostic"><i></i> Система готова</a>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>Новый уровень поддержки</span><b>01</b></div>
+        <h1>Проблема с<br><span>телефоном?</span></h1>
+        <p class="lead">Опишите, что произошло. Alex D Lab разберёт симптомы и составит безопасный план — от первой проверки до сохранения данных.</p>
+        <div class="trust-row">
+          <span><i>✓</i> Без регистрации</span>
+          <span><i>✓</i> Пошагово</span>
+          <span><i>✓</i> Безопасно для данных</span>
+        </div>
+      </div>
+
+      <div class="diagnostic" id="diagnostic">
+        <div class="panel-head">
+          <div><small>SMART DIAGNOSTIC</small><strong>Что случилось?</strong></div>
+          <span class="pulse"><i></i> ONLINE</span>
+        </div>
+        <form id="diagnosticForm">
+          <label class="input-shell">
+            <span class="spark">✦</span>
+            <textarea id="problemInput" rows="3" placeholder="Например: разбился экран iPhone, но телефон включается — как сохранить фотографии?"></textarea>
+            <span class="counter"><b id="charCount">0</b>/240</span>
+          </label>
+          <div class="device-row" role="group" aria-label="Тип устройства">
+            <button class="device active" type="button" data-device="iphone">Apple <b>iPhone</b></button>
+            <button class="device" type="button" data-device="android">Android <b>Смартфон</b></button>
+            <button class="device" type="button" data-device="unknown">Не знаю <b>Определим</b></button>
+          </div>
+          <button class="primary" type="submit"><span>Получить план действий</span><i>↗</i></button>
+        </form>
+        <div class="panel-foot"><span>ADL CORE · 2.0</span><span>Проверенные сценарии</span></div>
+      </div>
+    </section>
+
+    <section class="problems wrap" aria-labelledby="problemsTitle">
+      <div class="section-head">
+        <div><span>Быстрый запуск</span><h2 id="problemsTitle">Выберите симптом</h2></div>
+        <p>Начните диагностику в один клик</p>
+      </div>
+      <div class="problem-grid">
+        <button class="problem featured" data-problem="Разбился экран, хочу сохранить данные">
+          <span class="number">01</span><span class="problem-icon cracked">◒</span>
+          <strong>Разбит экран</strong><small>Сохранить данные и оценить риски</small><i>→</i>
+        </button>
+        <button class="problem" data-problem="Телефон не включается">
+          <span class="number">02</span><span class="problem-icon">◐</span>
+          <strong>Не включается</strong><small>Проверить питание и состояние</small><i>→</i>
+        </button>
+        <button class="problem" data-problem="Телефон не ловит сеть">
+          <span class="number">03</span><span class="problem-icon signal">⌁</span>
+          <strong>Нет сети</strong><small>SIM, оператор или устройство</small><i>→</i>
+        </button>
+        <button class="problem" data-problem="Телефон сильно тормозит">
+          <span class="number">04</span><span class="problem-icon">⌁</span>
+          <strong>Сильно тормозит</strong><small>Найти причину без сброса данных</small><i>→</i>
+        </button>
+        <button class="problem" data-problem="Телефон не заряжается">
+          <span class="number">05</span><span class="problem-icon">ϟ</span>
+          <strong>Не заряжается</strong><small>Кабель, разъём или аккумулятор</small><i>→</i>
+        </button>
+        <button class="problem danger" data-problem="В телефон попала вода">
+          <span class="number">06</span><span class="problem-icon">◌</span>
+          <strong>Попала вода</strong><small>Срочные действия без ошибок</small><i>→</i>
+        </button>
+      </div>
+    </section>
+
+    <section class="result-wrap wrap" id="result" hidden aria-live="polite">
+      <div class="result-card">
+        <div class="result-top"><span>ПРЕДВАРИТЕЛЬНЫЙ ПЛАН</span><button id="closeResult" aria-label="Закрыть">×</button></div>
+        <h2 id="resultTitle">Начните с безопасной проверки</h2>
+        <p id="resultText"></p>
+        <div class="steps" id="resultSteps"></div>
+        <div class="warning"><b>Важно</b><span id="resultWarning">Если данные важны, не выполняйте сброс устройства до создания резервной копии.</span></div>
+        <a href="/service/" class="secondary">Открыть сервисную лабораторию <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="principles wrap">
+      <article><span>01</span><h3>Сначала данные</h3><p>Каждый сценарий начинается с оценки риска для фотографий, контактов и файлов.</p></article>
+      <article><span>02</span><h3>Только нужные шаги</h3><p>Никаких случайных советов: действия зависят от устройства и симптомов.</p></article>
+      <article><span>03</span><h3>Честная граница</h3><p>Мы покажем, что можно сделать дома и когда безопаснее остановиться.</p></article>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="brand compact"><span class="brand-mark"><i></i><b>AD</b></span><span>Alex D Lab<small>DEVICE INTELLIGENCE</small></span></div>
+    <p>Инструкции носят информационный характер. При риске потери данных остановитесь и обратитесь к специалисту.</p>
+    <span>© 2026 ALEXDLAB.COM</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
