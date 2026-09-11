@@ -246,11 +246,11 @@ function initBridge(){
   $('bridgeRefresh').onclick=refreshBridge;
   $('bridgeIdentify').onclick=identifyIPhone;
   $('openDetectedGuide').onclick=()=>{selectDetectedModel(detectedDevice?.deviceType);$('iphone-center').scrollIntoView({behavior:'smooth'});};
-  $('openConfigurator').onclick=()=>bridgePost('/open/configurator');
-  $('deviceUpdate').onclick=()=>startBridgeJob('update');
-  $('deviceRestore').onclick=restoreDevice;
-  $('dfuGuide').onclick=()=>{$('dfuPanel').hidden=false;};
-  $('dfuClose').onclick=()=>{$('dfuPanel').hidden=true;clearInterval(dfuTimer);};
+  $('openConfigurator').onclick=(e)=>{if(isDfuPanelOpen()){e.preventDefault();e.stopPropagation();return;}bridgePost('/open/configurator');};
+  $('deviceUpdate').onclick=(e)=>{if(isDfuPanelOpen()){e.preventDefault();e.stopPropagation();return;}startBridgeJob('update');};
+  $('deviceRestore').onclick=(e)=>{if(isDfuPanelOpen()){e.preventDefault();e.stopPropagation();return;}restoreDevice();};
+  $('dfuGuide').onclick=()=>setDfuPanelOpen(true);
+  $('dfuClose').onclick=()=>setDfuPanelOpen(false);
   $('dfuStart').onclick=startDfuGuide;
   refreshBridge(); bridgeTimer=setInterval(refreshBridge,3000);
 }
@@ -307,8 +307,17 @@ function restoreDevice(){
   const phrase=prompt('RESTORE ПОЛНОСТЬЮ СТИРАЕТ IPHONE.\n\nЕсли резервная копия создана и вы хотите продолжить, введите: СТЕРЕТЬ IPHONE');
   if(phrase==='СТЕРЕТЬ IPHONE')startBridgeJob('restore',phrase);else if(phrase!==null)alert('Фраза не совпала. Restore отменён.');
 }
+function isDfuPanelOpen(){const p=$('dfuPanel');return !!(p&&!p.hidden);}
+function setBridgeActionButtonsDisabled(disabled){
+  ['openConfigurator','deviceUpdate','deviceRestore'].forEach(id=>{const el=$(id);if(!el)return;el.disabled=!!disabled;el.setAttribute('aria-disabled',disabled?'true':'false');el.style.opacity=disabled?'0.45':'';el.style.pointerEvents=disabled?'none':'';});
+}
+function setDfuPanelOpen(open){
+  const panel=$('dfuPanel');if(!panel)return;
+  if(open){panel.hidden=false;setBridgeActionButtonsDisabled(true);}
+  else{panel.hidden=true;clearInterval(dfuTimer);setBridgeActionButtonsDisabled(false);$('dfuTitle').textContent='Подготовьте подключённый iPhone';$('dfuSeconds').textContent='—';$('dfuInstruction').textContent='Выберите поколение';}
+}
 function startDfuGuide(){
-  clearInterval(dfuTimer);let family=$('dfuFamily').value;
+  clearInterval(dfuTimer);setBridgeActionButtonsDisabled(true);let family=$('dfuFamily').value;
   const sequence=family==='modern'?[['Быстро нажмите Volume Up',1],['Быстро нажмите Volume Down',1],['Удерживайте Side до выключения экрана',10],['Держите Side + Volume Down',5],['Отпустите Side, держите Volume Down',10]]:family==='seven'?[['Удерживайте Side + Volume Down',8],['Отпустите Side, держите Volume Down',10]]:[['Удерживайте Home + Side',8],['Отпустите Side, держите Home',10]];
   let step=0,left=sequence[0][1];$('dfuTitle').textContent='Выполняйте команды точно по таймеру';
   const draw=()=>{$('dfuSeconds').textContent=left;$('dfuInstruction').textContent=sequence[step][0];};draw();
