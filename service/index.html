@@ -3,25 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#101418">
+  <meta name="theme-color" content="#080b0f">
   <title>RepairLab — инженерная диагностика электроники</title>
   <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=10">
   <style>
-    .mainnav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}.mainnav a{display:inline-flex;align-items:center;min-height:40px;padding:0 13px;border-radius:10px;border:1px solid #303943;color:#dce3e7;text-decoration:none;background:#12181d;font-weight:750}.mainnav a.primary{background:#d8ff3e;color:#101310;border-color:#d8ff3e}
+    .mainnav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}.mainnav a{display:inline-flex;align-items:center;min-height:40px;padding:0 13px;border-radius:10px;border:1px solid #303943;color:#dce3e7;text-decoration:none;background:#12181d;font-weight:750}.mainnav a.primary{background:#d9ff43;color:#101310;border-color:#d9ff43}
     .iphone-shell{margin:0 0 26px;border:1px solid #2a333b;border-radius:20px;overflow:hidden;background:#0b0e11;box-shadow:0 20px 60px rgba(0,0,0,.18)}
     .iphone-shell iframe{display:block;width:100%;height:min(1050px,82vh);border:0;background:#0b0e11}
     .center-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;border-bottom:1px solid #2a333b;background:#12181d}.center-toolbar p{margin:0;color:#8f9aa4;font-size:13px}.center-toolbar a{white-space:nowrap}
     .section-separator{display:flex;align-items:center;gap:14px;margin:34px 0 18px}.section-separator:before,.section-separator:after{content:"";height:1px;background:#273039;flex:1}.section-separator span{color:#8f9aa4;font-size:12px;font-weight:800;letter-spacing:.14em}
     @media(max-width:560px){.center-toolbar{align-items:flex-start;flex-direction:column}.iphone-shell iframe{height:78vh}}
   </style>
+  <link rel="stylesheet" href="/assets/adl-look.css?v=20260911-look-v1">
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
-      <div class="logo">RL</div>
-      <div><strong>RepairLab</strong><span>инженерная диагностика электроники</span></div>
-    </div>
+    <a class="brand" href="/" aria-label="Alex D Lab — на главную">
+      <div class="logo brand-mark"><b>AD</b></div>
+      <div><strong class="brand-name">Alex D Lab</strong><span class="brand-sub">RepairLab · сервисная лаборатория</span></div>
+    </a>
     <button id="installBtn" class="ghost" hidden>Установить</button>
   </header>
 
@@ -152,7 +156,7 @@
     <section class="warning"><strong>Безопасность и точность.</strong><span>RepairLab не выдумывает контрольные точки, напряжения или профили нагрева. Точные значения должны быть привязаны к проверенному источнику и конкретной ревизии платы. Восстановление данных и jailbreak не включают обход код-пароля, Activation Lock или доступ к чужим данным.</span></section>
   </main>
 
-  <footer>RepairLab · iPhone + универсальная электроника · GitHub Pages</footer>
+  <footer>Alex D Lab · RepairLab · сервисная лаборатория</footer>
   <script src="app.js?v=10"></script>
   <script src="jailbreak.js?v=10"></script>
   <script>
@@ -164,7 +168,7 @@
         if(innerHeader) innerHeader.style.display='none';
         const wrap=d.querySelector('main.wrap');
         if(wrap) wrap.style.paddingTop='18px';
-        d.documentElement.style.scrollbarColor='#d8ff3e #101418';
+        d.documentElement.style.scrollbarColor='#d9ff43 #101418';
       }catch(e){console.warn('iPhone Center resize fallback',e);}
     });
   </script>
