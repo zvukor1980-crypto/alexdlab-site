@@ -3,157 +3,187 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alex D Lab — сайты-визитки</title>
-  <meta name="description" content="Деловые сайты-визитки под заказ. Домен, хостинг, почта и разработка — прозрачные цены." />
-  <meta name="theme-color" content="#0a0a0a" />
+  <title>Alex D Lab — сайты-визитки и студия</title>
+  <meta name="description" content="Alex D Lab — спокойная студия сайтов-визиток: домен, хостинг, почта, визитка, лендинг и пакеты под ключ." />
+  <meta name="theme-color" content="#1A1C22" />
+  <link rel="canonical" href="https://alexdlab.com/" />
+  <link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/vitrina.css?v=20260913b" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/studio.css" />
+  <script src="assets/studio.js" defer></script>
 </head>
 <body>
-  <div class="page">
-    <header class="nav">
-      <a class="logo" href="/">Alex D Lab</a>
-      <nav class="nav-links">
-        <a href="#prices">Цены</a>
-        <a href="#process">Как это работает</a>
-        <a href="#order-cta">Заказать</a>
-      </nav>
-      <a class="nav-cta" href="#order-cta">Связаться</a>
-    </header>
+  <div id="splash" class="splash" aria-hidden="false">
+    <div class="splash-card">
+      <img class="splash-art" src="assets/brand/splash.jpg" alt="" />
+      <img class="splash-logo" src="assets/brand/logo.png" alt="Alex D Lab" />
+      <p class="splash-name">Alex D Lab</p>
+      <p class="splash-sub">Studio · сайты-визитки</p>
+    </div>
+  </div>
 
+  <header class="top">
+    <a class="brand" href="#top">
+      <img src="assets/brand/logo.png" alt="" width="34" height="34" />
+      <span>Alex D Lab</span>
+    </a>
+    <nav>
+      <a href="#services">Услуги</a>
+      <a href="#prices">Цены</a>
+      <a href="#order">Заказ</a>
+    </nav>
+    <a class="btn copper" href="#order">Оставить заявку</a>
+  </header>
+
+  <main id="top">
     <section class="hero">
-      <p class="kicker">Студия сайтов · Израиль</p>
-      <h1>Сайт-визитка,<br /><em>который выглядит как бизнес</em></h1>
-      <p class="deck">Одна точная страница: услуги, цены, заявка. Без лишнего. Домен, хостинг и почта — по рыночным тарифам. Разработка — в два раза ниже типичных цен в Израиле.</p>
-      <div class="hero-actions">
-        <a class="btn btn-solid" href="#prices">Смотреть цены</a>
-        <button type="button" class="btn btn-line" data-service="Консультация / расчёт" data-price="бесплатно">Написать на почту</button>
-      </div>
-      <dl class="stats">
-        <div><dt>Срок</dt><dd>3–7 дней</dd></div>
-        <div><dt>Формат</dt><dd>1 страница</dd></div>
-        <div><dt>Оплата</dt><dd>Предоплата</dd></div>
-      </dl>
-    </section>
-
-    <section class="prices" id="prices">
-      <div class="section-head">
-        <h2>Прайс</h2>
-        <p>Инфраструктура — как у регистраторов. Работа — честно дешевле рынка.</p>
-      </div>
-
-      <div class="table-wrap">
-        <table class="price-table">
-          <thead>
-            <tr>
-              <th>Услуга</th>
-              <th>Что входит</th>
-              <th>Цена</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Услуга"><strong>Домен .com</strong><span class="tag">инфра</span></td>
-              <td data-label="Что входит">Регистрация / продление на год (рынок Namecheap)</td>
-              <td data-label="Цена" class="num">₪68<span>/год</span></td>
-              <td><button type="button" class="btn btn-sm" data-service="Домен .com" data-price="₪68/год">Заказать</button></td>
-            </tr>
-            <tr>
-              <td data-label="Услуга"><strong>Хостинг</strong><span class="tag">инфра</span></td>
-              <td data-label="Что входит">Shared Stellar · SSL · почтовые ящики</td>
-              <td data-label="Цена" class="num">₪207<span>/год</span></td>
-              <td><button type="button" class="btn btn-sm" data-service="Хостинг" data-price="₪207/год">Заказать</button></td>
-            </tr>
-            <tr>
-              <td data-label="Услуга"><strong>Почта на домене</strong><span class="tag">инфра</span></td>
-              <td data-label="Что входит">you@ваш-домен · отдельный ящик (часто бесплатно с хостингом)</td>
-              <td data-label="Цена" class="num">₪55<span>/год</span></td>
-              <td><button type="button" class="btn btn-sm" data-service="Почта на домене" data-price="₪55/год">Заказать</button></td>
-            </tr>
-            <tr class="work">
-              <td data-label="Услуга"><strong>Сайт-визитка</strong><span class="tag work">работа −50%</span></td>
-              <td data-label="Что входит">1–3 экрана · мобильная вёрстка · форма заявки · базовая SEO</td>
-              <td data-label="Цена" class="num">₪1 250</td>
-              <td><button type="button" class="btn btn-sm btn-solid" data-service="Сайт-визитка" data-price="₪1250">Заказать</button></td>
-            </tr>
-            <tr class="work">
-              <td data-label="Услуга"><strong>Лендинг</strong><span class="tag work">работа −50%</span></td>
-              <td data-label="Что входит">Одна сильная страница под заявки · адаптив · аналитика</td>
-              <td data-label="Цена" class="num">₪1 500</td>
-              <td><button type="button" class="btn btn-sm btn-solid" data-service="Лендинг" data-price="₪1500">Заказать</button></td>
-            </tr>
-            <tr class="work">
-              <td data-label="Услуга"><strong>Правка / доработка</strong><span class="tag work">работа −50%</span></td>
-              <td data-label="Что входит">Текст, блок, баг, мелкая правка существующего сайта</td>
-              <td data-label="Цена" class="num">от ₪250</td>
-              <td><button type="button" class="btn btn-sm btn-solid" data-service="Правка / доработка" data-price="от ₪250">Заказать</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <aside class="bundle" id="order-cta">
-        <div>
-          <p class="bundle-kicker">Пакет</p>
-          <h3>Под ключ</h3>
-          <p>Домен + хостинг + визитка. Почта — в хостинге.</p>
+      <div>
+        <p class="eyebrow">Студия · Израиль</p>
+        <h1>Сайты-визитки с характером спокойного бизнеса</h1>
+        <p class="lead">Тёплая бумага, чёткая типографика и аккуратный запуск: домен, хостинг, почта и страница, которая работает на доверие.</p>
+        <div class="cta-row">
+          <a class="btn ink" href="#prices">Смотреть цены</a>
+          <a class="btn ghost" href="#order">Написать в студию</a>
         </div>
-        <div class="bundle-buy">
-          <p class="bundle-price">₪1 525</p>
-          <p class="bundle-break">₪1 250 + ₪68 + ₪207</p>
-          <button type="button" class="btn btn-solid" data-service="Пакет под ключ (домен+хостинг+визитка)" data-price="₪1525">Заказать пакет</button>
+      </div>
+      <aside class="hero-panel">
+        <img src="assets/brand/splash.jpg" alt="" />
+        <div>
+          <strong>Визитка · Landing · Support</strong>
+          <p>Один экран — понятное предложение. Без кислотных акцентов, только спокойный бренд.</p>
         </div>
       </aside>
     </section>
 
-    <section class="process" id="process">
-      <div class="section-head">
-        <h2>Как это работает</h2>
+    <section class="block" id="services">
+      <div class="head">
+        <p class="eyebrow">Услуги</p>
+        <h2>Что делаем</h2>
       </div>
-      <ol class="steps">
-        <li><span>01</span><div><strong>Заявка</strong><p>Кнопка «Заказать» — письмо на почту с услугой и контактами.</p></div></li>
-        <li><span>02</span><div><strong>Предоплата</strong><p>Согласуем объём и срок. Старт после предоплаты.</p></div></li>
-        <li><span>03</span><div><strong>Сдача</strong><p>Готовый сайт на вашем домене. Правки по согласованному объёму.</p></div></li>
-      </ol>
+      <div class="cards">
+        <article>
+          <h3>Сайт-визитка</h3>
+          <p>Компактная страница о вас или компании: услуги, контакты, форма заявки.</p>
+        </article>
+        <article>
+          <h3>Лендинг</h3>
+          <p>Одностраничный сайт под оффер: структура, тексты, мобильная вёрстка.</p>
+        </article>
+        <article>
+          <h3>Домен · хостинг · почта</h3>
+          <p>Подключим инфраструктуру и передадим доступы в понятном виде.</p>
+        </article>
+        <article>
+          <h3>Правки и поддержка</h3>
+          <p>Точечные правки существующего сайта — от небольших правок до пакета.</p>
+        </article>
+      </div>
     </section>
 
-    <footer class="footer">
+    <section class="block tint" id="prices">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Прайс</p>
+          <h2>Прозрачные цены</h2>
+        </div>
+        <div class="price-table" role="table" aria-label="Цены">
+          <div class="row head-row" role="row">
+            <span>Услуга</span><span>Цена</span><span></span>
+          </div>
+          <div class="row" role="row">
+            <span>Домен</span><span>₪68 / год</span>
+            <button type="button" class="btn tiny" data-order="Домен" data-price="₪68/год">Заказать</button>
+          </div>
+          <div class="row" role="row">
+            <span>Хостинг</span><span>₪207 / год</span>
+            <button type="button" class="btn tiny" data-order="Хостинг" data-price="₪207/год">Заказать</button>
+          </div>
+          <div class="row" role="row">
+            <span>Email</span><span>₪55 / год</span>
+            <button type="button" class="btn tiny" data-order="Email" data-price="₪55/год">Заказать</button>
+          </div>
+          <div class="row" role="row">
+            <span>Сайт-визитка</span><span>₪1250</span>
+            <button type="button" class="btn tiny" data-order="Сайт-визитка" data-price="₪1250">Заказать</button>
+          </div>
+          <div class="row" role="row">
+            <span>Лендинг</span><span>₪1500</span>
+            <button type="button" class="btn tiny" data-order="Лендинг" data-price="₪1500">Заказать</button>
+          </div>
+          <div class="row" role="row">
+            <span>Правки / fix</span><span>от ₪250</span>
+            <button type="button" class="btn tiny" data-order="Правки / fix" data-price="от ₪250">Заказать</button>
+          </div>
+          <div class="row feature" role="row">
+            <span>Пакет под ключ</span><span>₪1525</span>
+            <button type="button" class="btn tiny copper" data-order="Пакет под ключ" data-price="₪1525">Заказать</button>
+          </div>
+        </div>
+        <p class="note">Пакет обычно включает визитку + базовый запуск. Точный состав уточним в заявке.</p>
+      </div>
+    </section>
+
+    <section class="block" id="order">
+      <div class="order-grid">
+        <div>
+          <p class="eyebrow">Заявка</p>
+          <h2>Расскажите о задаче</h2>
+          <p>Форма уходит на digitalaleksei@gmail.com. Ответим с деталями и сроками.</p>
+        </div>
+        <form id="studioOrder" class="order-form">
+          <label>Имя <input required name="name" autocomplete="name" /></label>
+          <label>Email <input required type="email" name="email" autocomplete="email" /></label>
+          <label>Телефон / Telegram <input name="contact" placeholder="+972… или @username" /></label>
+          <label>Услуга
+            <select name="service">
+              <option>Сайт-визитка</option>
+              <option>Лендинг</option>
+              <option>Домен</option>
+              <option>Хостинг</option>
+              <option>Email</option>
+              <option>Правки / fix</option>
+              <option>Пакет под ключ</option>
+              <option>Другое</option>
+            </select>
+          </label>
+          <label>Комментарий <textarea name="message" rows="4" placeholder="Коротко о проекте"></textarea></label>
+          <button type="submit" class="btn ink">Отправить заявку</button>
+          <p class="form-status" id="orderStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
       <div>
         <strong>Alex D Lab</strong>
-        <p>Сайты-визитки и лендинги</p>
+        <p>digitalaleksei@gmail.com</p>
       </div>
-      <a href="mailto:digitalaleksei@gmail.com">digitalaleksei@gmail.com</a>
-    </footer>
+      <a href="mailto:digitalaleksei@gmail.com">Написать</a>
+    </div>
+  </footer>
+
+  <div class="modal" id="quickOrder" aria-hidden="true">
+    <div class="backdrop" data-close></div>
+    <div class="sheet" role="dialog" aria-modal="true">
+      <button type="button" class="x" data-close aria-label="Закрыть">×</button>
+      <h2 id="qTitle">Заказ</h2>
+      <p class="muted" id="qSub"></p>
+      <form id="quickForm" class="order-form">
+        <input type="hidden" name="service" />
+        <input type="hidden" name="price" />
+        <label>Имя <input required name="name" /></label>
+        <label>Email <input required type="email" name="email" /></label>
+        <label>Контакт <input required name="contact" /></label>
+        <label>Комментарий <textarea name="message" rows="3"></textarea></label>
+        <button type="submit" class="btn ink">Отправить</button>
+        <p class="form-status" id="qStatus"></p>
+      </form>
+    </div>
   </div>
-
-  <dialog id="order" class="dlg">
-    <form method="POST" action="https://formsubmit.co/digitalaleksei@gmail.com" id="orderForm">
-      <header class="dlg-head">
-        <div>
-          <p class="dlg-kicker">Заявка</p>
-          <h3 id="dlgTitle">Заказ</h3>
-          <p class="dlg-sub" id="dlgSub"></p>
-        </div>
-        <button type="button" class="icon-x" id="dlgClose" aria-label="Закрыть">×</button>
-      </header>
-      <input type="hidden" name="_subject" id="mailSubject" value="Заказ с alexdlab.com" />
-      <input type="hidden" name="service" id="mailService" />
-      <input type="hidden" name="price" id="mailPrice" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="https://alexdlab.com/?sent=1" />
-      <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" />
-      <label>Имя<input required name="name" autocomplete="name" placeholder="Как к вам обращаться" /></label>
-      <label>Телефон или Telegram<input required name="contact" autocomplete="tel" placeholder="+972… или @username" /></label>
-      <label>Комментарий<textarea name="message" rows="3" placeholder="Коротко: что нужно и сроки"></textarea></label>
-      <button type="submit" class="btn btn-solid btn-block">Отправить на почту</button>
-      <p class="fine">Уйдёт на digitalaleksei@gmail.com. При первом заказе FormSubmit пришлёт письмо для подтверждения адреса.</p>
-    </form>
-  </dialog>
-
-  <script src="assets/vitrina.js?v=20260913b"></script>
 </body>
 </html>
