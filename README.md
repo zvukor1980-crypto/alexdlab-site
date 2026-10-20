@@ -8,5 +8,4 @@
 
 ## Фото
 
-- `img/cassettes*.webp` — «Heap of tapes», Hmvh, Wikimedia Commons, общественное достояние.
-- `img/tdk-d46.webp` — «TDK D46 audio cassette», Hannes Grobe/AWI, Wikimedia Commons, CC BY 3.0 (атрибуция указана на сайте).
+Все изображения — Wikimedia Commons, свободные лицензии; полный список авторов и лицензий — в подвале сайта («Авторы фотографий»). Файлы уменьшены и переведены в WebP (`img/`).

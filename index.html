@@ -5,24 +5,22 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alex D Lab — оцифровка кассет, запись кассет и CD · Хайфа</title>
 <meta name="description" content="Алексей, Хайфа. Перепишу аудиокассеты на компьютер, запишу вашу музыку на кассету или компакт-диск. Оставьте заявку на сайте.">
-<meta name="theme-color" content="#f4ede2">
+<meta name="theme-color" content="#1c1410">
 <link rel="canonical" href="https://alexdlab.com/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" as="image" href="img/cassettes-700.webp" media="(max-width: 800px)">
-<link rel="stylesheet" href="styles.css?v=3">
-<script src="app.js?v=3" defer></script>
+<link rel="stylesheet" href="styles.css?v=4">
+<script>document.documentElement.classList.add('js')</script>
+<script src="app.js?v=4" defer></script>
 </head>
 <body>
 <a class="skip" href="#services">К содержанию</a>
 
 <header class="header">
   <div class="wrap header-in">
-    <a class="brand" href="#top" aria-label="Alex D Lab — на главную">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>Alex D Lab</span>
-    </a>
+    <a class="brand" href="#top" aria-label="Alex D Lab — на главную"><span class="brand-mark" aria-hidden="true"></span><span>Alex D Lab</span></a>
     <nav class="nav" aria-label="Основная навигация">
       <a href="#services">Услуги</a>
+      <a href="#gallery">Галерея</a>
       <a href="#process">Как заказать</a>
       <a href="#faq">Вопросы</a>
       <a class="nav-cta" href="#order">Заявка</a>
@@ -33,92 +31,115 @@
 <main id="top">
   <section class="hero">
     <div class="wrap hero-in">
-      <div class="hero-copy">
+      <div class="hero-copy reveal">
         <p class="kicker">Алексей · Хайфа, Израиль</p>
-        <h1>Ваши кассеты&nbsp;— в&nbsp;цифре. Ваша музыка&nbsp;— на&nbsp;кассете и&nbsp;CD.</h1>
-        <p class="lead">Перепишу старые аудиокассеты на компьютер, чтобы семейные записи и любимые сборники не потерялись. И наоборот: запишу вашу музыку на кассету или компакт-диск.</p>
+        <h1>Голоса и&nbsp;песни <em>с&nbsp;плёнки</em>&nbsp;— в&nbsp;вашем компьютере</h1>
+        <p class="lead">На старых кассетах живут семейные праздники, первые слова детей и сборники, которые когда-то записывали друг для друга. Я перепишу их в цифровые файлы, чтобы они больше не потерялись.</p>
+        <p class="lead lead-2">А если хочется наоборот — запишу вашу музыку на кассету или компакт-диск.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#order">Оставить заявку</a>
-          <a class="btn btn-ghost" href="#services">Посмотреть услуги</a>
+          <a class="btn btn-ghost" href="#services">Что я записываю</a>
         </div>
       </div>
-      <figure class="hero-photo">
-        <picture>
-          <source media="(max-width: 800px)" srcset="img/cassettes-700.webp">
-          <img src="img/cassettes.webp" width="1400" height="1709" alt="Груда настоящих аудиокассет BASF, Pioneer и других марок" fetchpriority="high">
-        </picture>
-      </figure>
+      <div class="collage reveal" aria-label="Настоящие кассеты, компакт-диски и плеер">
+        <figure class="ph ph-main"><img src="img/cassettes-700.webp" srcset="img/cassettes-700.webp 700w, img/cassettes.webp 1400w" sizes="(max-width:900px) 70vw, 34vw" width="700" height="855" alt="Груда старых аудиокассет BASF, Pioneer и других марок" fetchpriority="high"></figure>
+        <figure class="ph ph-tdk"><img src="img/tdk-d46.webp" width="1200" height="831" alt="Прозрачная кассета TDK D46 крупным планом" fetchpriority="high"></figure>
+        <figure class="ph ph-cd"><img class="" src="img/cd-r-1100.webp" srcset="img/cd-r-600.webp 600w, img/cd-r-1100.webp 1100w" sizes="(max-width:900px) 45vw, 18vw" width="1100" height="733" alt="Чистые компакт-диски CD-R" fetchpriority="high"></figure>
+        <figure class="ph ph-walk"><img class="" src="img/walkman-1100.webp" srcset="img/walkman-600.webp 600w, img/walkman-1100.webp 1100w" sizes="(max-width:900px) 45vw, 18vw" width="1100" height="732" alt="Кассетный плеер Sony Walkman TPS-L2" fetchpriority="high"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="wrap reveal">
+      <p>Плёнка с годами стареет, а&nbsp;магнитофонов становится всё меньше. Воспоминания&nbsp;— не&nbsp;должны.</p>
     </div>
   </section>
 
   <section class="section" id="services">
     <div class="wrap">
-      <header class="section-head">
+      <header class="section-head reveal">
         <p class="kicker">Услуги</p>
         <h2>Три способа сохранить звук</h2>
       </header>
       <div class="cards">
-        <article class="card">
-          <span class="card-num">01</span>
-          <h3>Кассета → компьютер</h3>
-          <p>Музыка, домашние записи, голоса близких. Перенесу звук с аудиокассеты в цифровые файлы, которые удобно слушать и хранить.</p>
-          <button class="card-link" type="button" data-from="Аудиокассета" data-to="Файлы на компьютер">Заказать оцифровку →</button>
+        <article class="card reveal">
+          <div class="card-img"><img class="" src="img/archive-shelf-1100.webp" srcset="img/archive-shelf-600.webp 600w, img/archive-shelf-1100.webp 1100w" sizes="(max-width:900px) 100vw, 33vw" width="1100" height="733" alt="Полки с аудиокассетами в архиве" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <span class="card-num">01</span>
+            <h3>Кассета → компьютер</h3>
+            <p>Музыка, домашние записи, голоса близких. Перенесу звук с аудиокассеты в цифровые файлы — их удобно слушать, хранить и пересылать родным.</p>
+            <button class="card-link" type="button" data-from="Аудиокассета" data-to="Файлы на компьютер">Заказать оцифровку →</button>
+          </div>
         </article>
-        <article class="card">
-          <span class="card-num">02</span>
-          <h3>Музыка → кассета</h3>
-          <p>Плейлист, альбом или собственный сборник. Запишу на аудиокассету — для магнитофона, плеера или в подарок.</p>
-          <button class="card-link" type="button" data-from="Музыкальные файлы / плейлист" data-to="Аудиокассета">Заказать запись →</button>
+        <article class="card reveal">
+          <div class="card-img"><img class="" src="img/cassettes-row-1100.webp" srcset="img/cassettes-row-600.webp 600w, img/cassettes-row-1100.webp 1100w" sizes="(max-width:900px) 100vw, 33vw" width="1100" height="675" alt="Аудиокассеты TDK, Sony, Philips и других марок" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <span class="card-num">02</span>
+            <h3>Музыка → кассета</h3>
+            <p>Плейлист, любимый альбом или собственный сборник. Запишу на аудиокассету — для магнитофона, плеера или в подарок со смыслом.</p>
+            <button class="card-link" type="button" data-from="Музыкальные файлы / плейлист" data-to="Аудиокассета">Заказать запись →</button>
+          </div>
         </article>
-        <article class="card">
-          <span class="card-num">03</span>
-          <h3>Музыка → CD</h3>
-          <p>Запишу музыку на компакт-диск. Скажите, где будете слушать, — подберём Audio CD или диск с файлами.</p>
-          <button class="card-link" type="button" data-from="Музыкальные файлы / плейлист" data-to="Компакт-диск CD">Заказать диск →</button>
+        <article class="card reveal">
+          <div class="card-img"><img class="" src="img/cd-stack-1100.webp" srcset="img/cd-stack-600.webp 600w, img/cd-stack-1100.webp 1100w" sizes="(max-width:900px) 100vw, 33vw" width="1100" height="826" alt="Стопка компакт-дисков в коробках" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <span class="card-num">03</span>
+            <h3>Музыка → CD</h3>
+            <p>Запишу музыку на компакт-диск. Скажите, где будете слушать — в машине или дома, — и подберём Audio CD или диск с файлами.</p>
+            <button class="card-link" type="button" data-from="Музыкальные файлы / плейлист" data-to="Компакт-диск CD">Заказать диск →</button>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="process">
+  <section class="section section-dark" id="gallery">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="kicker">Галерея</p>
+        <h2>Эпоха плёнки и&nbsp;дисков</h2>
+        <p class="section-sub">Кассетные деки, плееры, катушки и диски — техника, на которой выросла не одна семейная фонотека.</p>
+      </header>
+      <div class="gallery">
+        <figure class="g g-wide reveal"><img class="" src="img/cassette-deck-1100.webp" srcset="img/cassette-deck-600.webp 600w, img/cassette-deck-1100.webp 1100w" sizes="(max-width:700px) 100vw, 66vw" width="1100" height="337" alt="Кассетная дека Yamaha K-300, 1983 год" loading="lazy" decoding="async"><figcaption>Кассетная дека, 1983</figcaption></figure>
+        <figure class="g g-tall reveal"><img class="" src="img/reel-to-reel-1100.webp" srcset="img/reel-to-reel-600.webp 600w, img/reel-to-reel-1100.webp 1100w" sizes="(max-width:700px) 100vw, 33vw" width="1100" height="924" alt="Катушечный магнитофон Revox B77" loading="lazy" decoding="async"><figcaption>Катушечный магнитофон</figcaption></figure>
+        <figure class="g reveal"><img class="" src="img/portable-deck-1100.webp" srcset="img/portable-deck-600.webp 600w, img/portable-deck-1100.webp 1100w" sizes="(max-width:700px) 100vw, 33vw" width="1100" height="644" alt="Портативная кассетная дека Nakamichi 550, 1974 год" loading="lazy" decoding="async"><figcaption>Портативная дека, 1974</figcaption></figure>
+        <figure class="g reveal"><img class="" src="img/walkman-1100.webp" srcset="img/walkman-600.webp 600w, img/walkman-1100.webp 1100w" sizes="(max-width:700px) 100vw, 33vw" width="1100" height="732" alt="Плеер Sony Walkman" loading="lazy" decoding="async"><figcaption>Первый «Walkman»</figcaption></figure>
+        <figure class="g g-full reveal"><img class="" src="img/cd-spindle-1100.webp" srcset="img/cd-spindle-600.webp 600w, img/cd-spindle-1100.webp 1100w" sizes="(max-width:700px) 100vw, 33vw" width="1100" height="733" alt="Компакт-диски на шпинделе, вид сбоку" loading="lazy" decoding="async"><figcaption>Компакт-диски</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
     <div class="wrap process">
-      <figure class="process-photo">
-        <img src="img/tdk-d46.webp" width="1200" height="831" loading="lazy" alt="Прозрачная аудиокассета TDK D46 крупным планом: видны катушки и лента">
-        <figcaption>Фото: Hannes Grobe/AWI, <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener" target="_blank">CC BY 3.0</a></figcaption>
+      <figure class="process-photo reveal">
+        <img src="img/tdk-d46.webp" width="1200" height="831" loading="lazy" decoding="async" alt="Кассета TDK D46: видны катушки и лента">
       </figure>
       <div>
-        <header class="section-head">
+        <header class="section-head reveal">
           <p class="kicker">Как заказать</p>
-          <h2>Всё просто</h2>
+          <h2>Три спокойных шага</h2>
         </header>
         <ol class="steps">
-          <li>
-            <h3>Расскажите о записи</h3>
-            <p>Что у вас есть, сколько кассет или песен и какой результат нужен.</p>
-          </li>
-          <li>
-            <h3>Согласуем детали</h3>
-            <p>Формат, цену, сроки и как удобнее передать носители или файлы.</p>
-          </li>
-          <li>
-            <h3>Получите результат</h3>
-            <p>Цифровые файлы, записанную кассету или CD — как договорились.</p>
-          </li>
+          <li class="reveal"><h3>Расскажите о записи</h3><p>Что у вас есть, сколько кассет или песен и какой результат нужен.</p></li>
+          <li class="reveal"><h3>Согласуем детали</h3><p>Формат, цену, сроки и как удобнее передать носители или файлы.</p></li>
+          <li class="reveal"><h3>Получите результат</h3><p>Цифровые файлы, записанную кассету или CD — как договорились.</p></li>
         </ol>
-        <p class="note">Стоимость и сроки зависят от объёма и состояния носителей. Называю их до начала работы.</p>
+        <p class="note reveal">Стоимость и сроки зависят от объёма и состояния носителей. Называю их до начала работы.</p>
       </div>
     </div>
   </section>
 
-  <section class="section" id="order">
+  <section class="section section-alt" id="order">
     <div class="wrap order">
-      <div class="order-copy">
+      <div class="order-copy reveal">
         <p class="kicker">Заявка</p>
         <h2>Что будем записывать?</h2>
         <p>Опишите задачу своими словами и оставьте удобный контакт: телефон, Telegram, WhatsApp или email. Я отвечу и уточню детали.</p>
         <p class="order-mail">Или напишите напрямую:<br><a href="mailto:digitalaleksei@gmail.com">digitalaleksei@gmail.com</a></p>
       </div>
-      <form id="order-form" class="form" action="https://formsubmit.co/digitalaleksei@gmail.com" method="POST">
+      <form id="order-form" class="form reveal" action="https://formsubmit.co/digitalaleksei@gmail.com" method="POST">
         <div class="form-row">
           <label>Ваше имя<input name="name" autocomplete="name" required maxlength="100" placeholder="Как к вам обращаться"></label>
           <label>Контакт для связи<input name="contact" required maxlength="250" placeholder="Телефон, @telegram или email"></label>
@@ -140,28 +161,13 @@
     </div>
   </section>
 
-  <section class="section section-alt" id="faq">
+  <section class="section" id="faq">
     <div class="wrap faq">
-      <header class="section-head">
-        <p class="kicker">Вопросы</p>
-        <h2>Частые вопросы</h2>
-      </header>
-      <details>
-        <summary>Не знаю, какой формат выбрать</summary>
-        <p>Выберите в заявке «нужна консультация» и напишите, на чём собираетесь слушать. Подскажу подходящий вариант.</p>
-      </details>
-      <details>
-        <summary>Можно записать свой сборник?</summary>
-        <p>Да. Пришлите список песен и порядок. Как передать музыку, длительность и носитель согласуем заранее.</p>
-      </details>
-      <details>
-        <summary>Кассета старая или повреждённая. Получится?</summary>
-        <p>Опишите её состояние в заявке. Результат зависит от состояния ленты — оценю до начала работы.</p>
-      </details>
-      <details id="privacy">
-        <summary>Как используются мои данные?</summary>
-        <p>Имя, контакт и описание заказа передаются через сервис FormSubmit на digitalaleksei@gmail.com. Алексей использует их только для ответа и согласования заказа. Не указывайте пароли и платёжные данные. Чтобы удалить заявку, напишите на этот же адрес.</p>
-      </details>
+      <header class="section-head reveal"><p class="kicker">Вопросы</p><h2>Частые вопросы</h2></header>
+      <details class="reveal"><summary>Не знаю, какой формат выбрать</summary><p>Выберите в заявке «нужна консультация» и напишите, на чём собираетесь слушать. Подскажу подходящий вариант.</p></details>
+      <details class="reveal"><summary>Можно записать свой сборник?</summary><p>Да. Пришлите список песен и порядок. Как передать музыку, длительность и носитель согласуем заранее.</p></details>
+      <details class="reveal"><summary>Кассета старая или повреждённая. Получится?</summary><p>Опишите её состояние в заявке. Результат зависит от состояния ленты — оценю до начала работы.</p></details>
+      <details class="reveal" id="privacy"><summary>Как используются мои данные?</summary><p>Имя, контакт и описание заказа передаются через сервис FormSubmit на digitalaleksei@gmail.com. Алексей использует их только для ответа и согласования заказа. Не указывайте пароли и платёжные данные. Чтобы удалить заявку, напишите на этот же адрес.</p></details>
     </div>
   </section>
 </main>
@@ -172,7 +178,22 @@
     <span>Алексей · Хайфа, Израиль</span>
     <a href="mailto:digitalaleksei@gmail.com">digitalaleksei@gmail.com</a>
   </div>
-  <p class="wrap credits">Фото кассет: Wikimedia Commons — «Heap of tapes» (Hmvh, общественное достояние); «TDK D46 audio cassette» (Hannes Grobe/AWI, CC BY 3.0).</p>
+  <details class="wrap credits">
+    <summary>Авторы фотографий</summary>
+    <p>Все фото — Wikimedia Commons, свободные лицензии:
+    «Heap of tapes» — Hmvh, общественное достояние;
+    «TDK D46 audio cassette» — Hannes Grobe/AWI, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>;
+    «Cassette tapes» — Joost J. Bakker, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>;
+    «Cassette Tapes» — University of Illinois Library, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>;
+    «Yamaha K-300 Cassette Deck 1983» — Wikisympathisant, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (кадрировано);
+    «Revox B77 MK II reel-to-reel audio tape recorder» — Norbert Schnitzler, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>;
+    «Music CD stack» — Santeri Viinamäki, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>;
+    «Walkman TPS-L2» — Anna Gerdén, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>;
+    «Nakamichi 550 portable cassette deck» — Alex Noble, CC0;
+    «Verbatim CD-R 700MB 52x Discs» — Dillan Payne, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>;
+    «CDs, Seitenansicht» — Dietmar Rabich, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+    Изображения уменьшены и переведены в WebP.</p>
+  </details>
 </footer>
 </body>
 </html>

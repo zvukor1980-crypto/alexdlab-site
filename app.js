@@ -35,3 +35,10 @@ form.addEventListener('submit', async event => {
     status.className='error';status.textContent='Не удалось подтвердить отправку. Ваши данные остались в форме. Нажмите ссылку ниже, чтобы отправить готовую заявку через почту.';
   } finally {clearTimeout(timeout);button.disabled=false;form.removeAttribute('aria-busy');}
 });
+
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(entries => entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), {rootMargin: '0px 0px -8% 0px', threshold: 0.08});
+  els.forEach(e => io.observe(e));
+})();
