@@ -51,6 +51,7 @@ input[type=file]{max-width:100%}video{max-width:100%;border-radius:12px}select.f
 <header><div class="mark"><div class="logo" dir="rtl">רעש יפה</div><div><div class="tag">RA'ASH YAFE</div><div class="small">Твоя музыкальная студия</div></div></div><button id="settings" class="iconbtn" aria-label="Настройки">⚙</button></header>
 <section class="hero"><div class="art"><img id="cover" src="cover.svg" alt="Обложка альбома"></div><div class="herofoot"><div><div class="subtitle">GRUNGE · ISRAEL · STUDIO</div><h1 id="albumtitle" dir="rtl">אני פה!</h1><div id="albumsub" class="small">Первый альбом · 8 композиций</div></div><button class="cta" id="albumplay">▶ Играть</button></div></section>
 <div class="underhero"><button id="backbtn" class="ghost">▣ Задняя обложка</button><button id="coverbtn" class="ghost">✦ Сменить обложку</button><button id="bulkbtn" class="ghost">＋ Файлы</button></div>
+<div class="underhero" style="margin-top:-6px"><button id="quickbackup" class="ghost">⤓ Сохранить всё в ZIP</button><button id="quickrestore" class="ghost">⤒ Восстановить</button></div>
 <div class="stats"><h2>Мои альбомы</h2><span class="counter" id="counter">0/16 записей</span></div><div id="albums" class="albumchips"></div>
 <div class="stats"><h2>Список песен</h2><button id="newtrack" class="ghost" style="flex:0;padding:0 13px">＋ Песня</button></div>
 <div id="tracks"></div><div class="hint">Две версии каждой песни. Нажми «Добавить» под нужной версией — прикрепи MP3/WAV, ссылку Suno или видео. Чужие песни не добавляются автоматически.</div>
@@ -62,7 +63,9 @@ input[type=file]{max-width:100%}video{max-width:100%;border-radius:12px}select.f
 <input id="imagefile" type="file" accept="image/*" hidden>
 <input id="bulkfiles" type="file" accept="audio/*,video/*,.mp3,.wav,.m4a,.mp4,.mov" multiple hidden>
 <input id="importjson" type="file" accept="application/json,.json" hidden>
+<input id="importzip" type="file" accept=".zip,application/zip,application/x-zip-compressed" hidden>
 <audio id="audio" preload="metadata"></audio>
+<script src="backup.js"></script>
 <script>
 'use strict';
 const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -110,15 +113,67 @@ $('#imagefile').onchange=async e=>{const f=e.target.files[0];if(!f||!f.type.star
 $('#backbtn').onclick=async()=>{const src=window.albumBackURL||'back.svg';openSheet('Задняя обложка','<img src="'+esc(src)+'" style="width:100%;border-radius:14px" alt="Задняя обложка"><div class="actions"><button class="ghost" id="changeBack">Заменить</button><button class="ghost" id="closeBack">Закрыть</button></div>');$('#changeBack').onclick=()=>setImage('backKey');$('#closeBack').onclick=closeSheet};
 function addAlbum(){openSheet('Новый альбом','<p>Создай новый альбом этой группы. Все старые песни и варианты останутся на месте.</p><label class="field">Название на иврите или русском</label><input id="aname" class="fieldinput" placeholder="שם האלבום"><label class="field">Подпись</label><input id="adesc" class="fieldinput" placeholder="Новый альбом"><button id="commitAlbum" class="cta">Создать альбом</button>');$('#commitAlbum').onclick=()=>{const name=$('#aname').value.trim();if(!name){notify('Введите название альбома');return}const a={id:'album-'+Date.now(),name,description:$('#adesc').value.trim()||'Новый альбом',coverKey:null,backKey:null,tracks:[]};library.albums.push(a);current=a;library.current=a.id;save();closeSheet();paint();notify('Альбом создан')}}
 $('#newtrack').onclick=()=>{openSheet('Новая песня','<p>Добавим новую песню с двумя вариантами A/B.</p><label class="field">Название песни</label><input id="tname" class="fieldinput" placeholder="שם השיר"><label class="field">Транслитерация / перевод</label><input id="ttrans" class="fieldinput" placeholder="Название латиницей"><button class="cta" id="commitTrack">Добавить песню</button>');$('#commitTrack').onclick=()=>{const n=$('#tname').value.trim();if(!n){notify('Введите название');return}current.tracks.push(makeSong(n,$('#ttrans').value.trim()));save();closeSheet();paint();notify('Песня добавлена')}};
-function editSong(id){const t=albumSong(id);if(!t)return;openSheet('Песня · '+t.name,'<label class="field">Название</label><input id="editname" class="fieldinput" value="'+esc(t.name)+'"><label class="field">Транслитерация</label><input id="edittrans" class="fieldinput" value="'+esc(t.trans)+'"><button class="cta" id="editsave">Сохранить</button><div class="actions"><button class="ghost" id="attachVideo">＋ Прикрепить клип</button><button class="ghost" id="viewVideo">▶ Смотреть клип</button></div><button class="ghost danger" id="delTrack" style="width:100%">Удалить эту песню</button>');
+function editSong(id){const t=albumSong(id);if(!t)return;openSheet('Песня · '+t.name,'<label class="field">Название</label><input id="editname" class="fieldinput" value="'+esc(t.name)+'"><label class="field">Транслитерация</label><input id="edittrans" class="fieldinput" value="'+esc(t.trans)+'"><button class="cta" id="editsave">Сохранить</button><div class="actions"><button class="ghost" id="manageA">Версия A · изменить</button><button class="ghost" id="manageB">Версия B · изменить</button></div><div class="actions"><button class="ghost" id="attachVideo">＋ Прикрепить клип</button><button class="ghost" id="viewVideo">▶ Смотреть клип</button></div><button class="ghost danger" id="delTrack" style="width:100%">Удалить эту песню</button>');
 $('#editsave').onclick=()=>{const n=$('#editname').value.trim();if(n)t.name=n;t.trans=$('#edittrans').value.trim();save();closeSheet();paint()};
+$('#manageA').onclick=()=>editVariant(id,0);$('#manageB').onclick=()=>editVariant(id,1);
 $('#attachVideo').onclick=()=>{selected={id,v:0,video:true};$('#mediafile').setAttribute('accept','video/*,.mp4,.mov');$('#mediafile').click()};
 $('#viewVideo').onclick=async()=>{if(!t.videoKey)return notify('Клип пока не добавлен');const f=await get(t.videoKey);if(!f)return notify('Клип не найден');const u=URL.createObjectURL(f);openSheet('Клип · '+t.name,'<video controls playsinline src="'+u+'"></video><p>Клип сохранён на этом iPhone.</p>')};
 $('#delTrack').onclick=()=>{if(!confirm('Удалить песню и её записи из списка?'))return;current.tracks=current.tracks.filter(x=>x.id!==id);save();closeSheet();paint()}};
 $('#bulkbtn').onclick=()=>$('#bulkfiles').click();
-$('#bulkfiles').onchange=async e=>{const files=[...e.target.files];if(!files.length)return;let added=0,unmatched=[];for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|m4a|aac|flac)$/i.test(f.name)){unmatched.push(f.name);continue}const low=f.name.toLowerCase().replace(/[\s_\-!'’.,]/g,'');let match=current.tracks.find(t=>[t.name,t.trans].some(x=>x&&low.includes(x.toLowerCase().replace(/[\s_\-!'’.,]/g,''))));if(!match){unmatched.push(f.name);continue}let variant=/(\b|[_ -])(b|v2|ver2|2)(\b|[_. -])/i.test(f.name)?1:/(\b|[_ -])(a|v1|ver1|1)(\b|[_. -])/i.test(f.name)?0:match.variants.findIndex(v=>!v.fileKey);if(variant<0){unmatched.push(f.name);continue}const z=match.variants[variant];if(z.fileKey){unmatched.push(f.name);continue}try{const key='audio:'+current.id+':'+match.id+':'+variant;await put(key,f);z.fileKey=key;z.fileName=f.name;added++}catch(err){unmatched.push(f.name)}}save();paint();notify('Добавлено '+added+' файлов; не распознано '+unmatched.length);if(unmatched.length)openSheet('Нужна ручная привязка','<p>Эти файлы не загружены: имя не совпало с известной песней или оба варианта уже заняты.</p><div class="status">'+unmatched.map(esc).join('<hr>')+'</div><p>Добавь каждый через кнопку «Вариант A/B» нужной песни.</p>');e.target.value=''};
+$('#bulkfiles').onchange=async e=>{const files=[...e.target.files];if(!files.length)return;let added=0,unmatched=[];for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|m4a|aac|flac)$/i.test(f.name)){unmatched.push(f.name);continue}const low=f.name.toLowerCase().replace(/[\s_\-!'’.,]/g,'');let match=current.tracks.find(t=>[t.name,t.trans].some(x=>x&&low.includes(x.toLowerCase().replace(/[\s_\-!'’.,]/g,''))));if(!match){unmatched.push(f.name);continue}let variant=/(\b|[_ -])(b|v2|ver2|2)(\b|[_. -])/i.test(f.name)?1:/(\b|[_ -])(a|v1|ver1|1)(\b|[_. -])/i.test(f.name)?0:match.variants.findIndex(v=>!v.fileKey);if(variant<0){unmatched.push(f.name);continue}const z=match.variants[variant];if(z.fileKey){unmatched.push(f.name);continue}try{const key='audio:'+current.id+':'+match.id+':'+variant;await put(key,f);z.fileKey=key;z.fileName=f.name;added++}catch(err){unmatched.push(f.name)}}save();paint();notify('Добавлено '+added+' файлов; не распознано '+unmatched.length);if(unmatched.length){
+ const candidates=files.filter(f=>unmatched.includes(f.name)&&(/^(audio\/)/.test(f.type)||/\.(mp3|wav|m4a|aac|flac)$/i.test(f.name)));
+ const options='<option value="">Не добавлять</option>'+current.tracks.flatMap(t=>t.variants.map((v,j)=>'<option value="'+esc(t.id)+'|'+j+'" '+(v.fileKey?'disabled':'')+'>'+esc(t.name)+' — вариант '+(j?'B':'A')+(v.fileKey?' (занят)':'')+'</option>')).join('');
+ openSheet('Распределить оставшиеся файлы','<p>Не удалось точно узнать '+unmatched.length+' файлов. Выбери песню и вариант для каждого, чтобы не перепутать записи.</p>'+candidates.map((f,i)=>'<label class="field">'+esc(f.name)+'</label><select class="fieldinput" data-match="'+i+'">'+options+'</select>').join('')+'<button id="applyMatches" class="cta">Добавить выбранные файлы</button>');
+ $('#applyMatches').onclick=async()=>{
+  let count=0;const used=new Set();
+  for(let i=0;i<candidates.length;i++){
+   const val=$('[data-match="'+i+'"]').value;if(!val)continue;
+   if(used.has(val)){notify('Одному варианту можно назначить только один файл');return}
+   used.add(val);
+  }
+  try{
+   for(let i=0;i<candidates.length;i++){
+    const val=$('[data-match="'+i+'"]').value;if(!val)continue;
+    const [id,j]=val.split('|'),t=albumSong(id),v=t?.variants[Number(j)];
+    if(!v||v.fileKey)continue;
+    const key='audio:'+current.id+':'+id+':'+j;
+    await put(key,candidates[i]);v.fileKey=key;v.fileName=candidates[i].name;count++;
+   }
+   save();closeSheet();paint();notify('Добавлено вручную: '+count);
+  }catch(err){save();paint();notify('Ошибка сохранения файла. Проверь память iPhone')}
+ };
+ if(!candidates.length)openSheet('Нераспознанные файлы','<div class="status">'+unmatched.map(esc).join('<hr>')+'</div>');
+}
+e.target.value=''};
 const originalFileHandler=$('#mediafile').onchange;$('#mediafile').onchange=async e=>{const f=e.target.files[0];if(f&&selected?.video){const t=albumSong(selected.id);if(t&&(/^video\//.test(f.type)||/\.(mp4|mov)$/i.test(f.name))){const key='video:'+current.id+':'+t.id;await put(key,f);t.videoKey=key;save();closeSheet();notify('Клип сохранён')}else notify('Выбери видео MP4 или MOV');selected.video=false;$('#mediafile').setAttribute('accept','audio/*,.mp3,.m4a,.wav,.aac,.flac');e.target.value='';return}await originalFileHandler(e)};
-$('#settings').onclick=()=>{openSheet('Настройки · רעש יפה','<p><b>Студийная библиотека.</b> Сохраняет песни, клипы, обложки и два варианта каждой записи на текущем iPhone. Ссылки Suno открываются в его официальном плеере.</p><button class="cta" id="sunoLibrary">Открыть мою библиотеку Suno ↗</button><button class="ghost" id="exportData" style="width:100%;margin-top:10px">Экспорт списка альбомов (JSON)</button><button class="ghost" id="importData" style="width:100%;margin-top:10px">Импорт списка альбомов (JSON)</button><p>Важное ограничение: экспорт JSON сохраняет названия, ссылки и структуру, но не сами большие аудио- и видеофайлы. Оригиналы храни также в «Файлах» или резервной копии iPhone.</p><p>Для установки: Safari → Поделиться → На экран «Домой». Не вводи пароль Suno в эту программу.</p><div class="status">Режим офлайн работает после первого открытия с интернетом. Сохранённые аудио и видео доступны без сети.</div>');$('#sunoLibrary').onclick=()=>window.open('https://suno.com/library','_blank','noopener');$('#exportData').onclick=()=>{const blob=new Blob([JSON.stringify(library,null,2)],{type:'application/json'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download='raash-yafe-library.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),15000)};$('#importData').onclick=()=>$('#importjson').click()};
+$('#settings').onclick=()=>{openSheet('Настройки · רעש יפה','<p><b>Студийная библиотека.</b> Сохраняет песни, клипы, обложки и два варианта каждой записи на текущем iPhone. Ссылки Suno открываются в его официальном плеере.</p><button class="cta" id="sunoLibrary">Открыть мою библиотеку Suno ↗</button><button class="cta" id="fullBackup" style="width:100%;margin-top:10px">⤓ Полная копия ZIP — песни, клипы, обложки</button><button class="ghost" id="restoreAll" style="width:100%;margin-top:10px">⤒ Восстановить из ZIP</button><button class="ghost" id="exportData" style="width:100%;margin-top:10px">Только список JSON</button><button class="ghost" id="importData" style="width:100%;margin-top:10px">Импорт старого списка JSON</button><p>Полная копия ZIP содержит локальные MP3, видео, обложки, названия и ссылки Suno. Сохраняй ZIP в «Файлы» / iCloud Drive. Экспорт JSON содержит только названия и ссылки — без записей.</p><p>Для установки: Safari → Поделиться → На экран «Домой». Не вводи пароль Suno в эту программу.</p><div class="status">Режим офлайн работает после первого открытия с интернетом. Сохранённые аудио и видео доступны без сети.</div>');$('#sunoLibrary').onclick=()=>window.open('https://suno.com/library','_blank','noopener');
+$('#fullBackup').onclick=createFullBackup;$('#restoreAll').onclick=()=>$('#importzip').click();$('#exportData').onclick=()=>{const blob=new Blob([JSON.stringify(library,null,2)],{type:'application/json'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download='raash-yafe-library.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),15000)};$('#importData').onclick=()=>$('#importjson').click()};
+$('#quickbackup').onclick=createFullBackup;
+$('#quickrestore').onclick=()=>$('#importzip').click();
+async function createFullBackup(){
+ openSheet('Полная резервная копия','<p>Собираю все альбомы, два варианта записей, видео и изображения в один ZIP.</p><div id="backupProgress" class="status">Подготовка...</div><p>Сохрани полученный файл в «Файлы» или iCloud Drive. Не удаляй музыку до сохранения архива.</p>');
+ const info=$('#backupProgress');
+ try{
+  const result=await RaashBackup.exportAll(library,get,msg=>{if(info)info.textContent=msg});
+  const url=URL.createObjectURL(result.archive);
+  const name='Raash-Yafe-FULL-'+new Date().toISOString().slice(0,10)+'.zip';
+  openSheet('Копия готова','<p>В архив включены '+result.fileCount+' медиафайлов и все альбомы со ссылками Suno.</p><a id="downloadZip" class="cta" style="display:block;text-align:center;text-decoration:none" download="'+name+'" href="'+url+'">⤓ Сохранить ZIP в «Файлы»</a>'+(result.missing.length?'<p style="color:#ffbe91">Внимание: '+result.missing.length+' ранее прикреплённых файлов не найдены и отсутствуют в копии.</p>':'')+'<p>Архив готов. Нажми кнопку выше и выбери сохранение в «Файлы» на iPhone.</p>');
+  $('#close').addEventListener('click',()=>setTimeout(()=>URL.revokeObjectURL(url),60000),{once:true});
+ }catch(err){openSheet('Ошибка резервной копии','<p>'+esc(err?.message||err)+'</p><p>Свободное место в памяти iPhone может быть ограничено. Оригинальные записи не удалены.</p>')}
+}
+$('#importzip').onchange=async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f)return;
+ if(!confirm('Восстановить альбомы и медиа из выбранного ZIP? Текущий список альбомов заменится. Сначала сохрани копию текущей библиотеки.'))return;
+ openSheet('Восстановление ZIP','<p>Восстанавливаю аудио, клипы, обложки и песни...</p><div class="status" id="restoreProgress">Чтение архива...</div>');
+ const info=$('#restoreProgress');
+ try{
+  const result=await RaashBackup.restoreAll(f,put,msg=>{if(info)info.textContent=msg});
+  audio.pause();audio.removeAttribute('src');audio.load();
+  if(playerObject){URL.revokeObjectURL(playerObject);playerObject=null}
+  library=result.library;current=library.albums[0];selected=null;save();closeSheet();paint();
+  notify('Восстановлено '+result.restored+' медиафайлов и '+library.albums.length+' альбомов');
+ }catch(err){openSheet('Не удалось восстановить','<p>'+esc(err?.message||err)+'</p><p>Текущий список альбомов остался на месте. Проверь ZIP и свободную память iPhone.</p>')}
+};
 $('#importjson').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const parsed=JSON.parse(await f.text());if(!Array.isArray(parsed.albums)||!parsed.albums.length)throw new Error('format');if(!confirm('Заменить текущий список альбомов? Старые аудиофайлы в памяти останутся, но их ссылки могут потеряться.'))return;library=parsed;current=parsed.albums[0];save();closeSheet();paint();notify('Список альбомов импортирован')}catch(err){notify('Не удалось прочитать JSON')}e.target.value=''};
 paint();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{});
 </script></body></html>
