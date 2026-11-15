@@ -1,0 +1,19 @@
+{
+  "name": "רעש יפה — Ra'ash Yafe",
+  "short_name": "רעש יפה",
+  "description": "Израильская гранж-группа: альбомы, песни, два варианта, клипы",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090708",
+  "theme_color": "#090708",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
